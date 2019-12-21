@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NavigationMenu from "./resources/containers/NaviagtionMenu";
+import NavigationMenu from "./resources/containers/NavigationMenu";
 import { SwitchWrapper } from "./style";
 
 const Home = lazy(() => import("./resources/containers/Home"));
