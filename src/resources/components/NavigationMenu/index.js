@@ -1,8 +1,8 @@
 import React from "react";
 
 import MenuOutlinedIcon from "@material-ui/icons/MenuOutlined";
-import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
+import { BaseButton } from "../../shared-components/Buttons";
 
 /* 
     TODO: 
@@ -16,9 +16,7 @@ const NavigationMenuComponent = ({
   renderMenuItem
 }) => (
   <nav>
-    <Button onClick={toggleMenu} variant="contained" color="primary">
-      <MenuOutlinedIcon />
-    </Button>
+    <BaseButton onClick={toggleMenu} text={<MenuOutlinedIcon />} />
     <Menu
       anchorEl={anchorEl}
       open={Boolean(anchorEl)}
