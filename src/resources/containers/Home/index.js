@@ -1,6 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
 import HomeComponent from "../../components/Home/index";
+import { startAction } from "../../../redux/actions/index";
 
-const HomeContainer = () => <HomeComponent />;
+const HomeContainer = props => <HomeComponent {...props} />;
 
-export default HomeContainer;
+const mapStateToProps = state => {
+  return state;
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleClick: () => dispatch(startAction("MESSAGEE"))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

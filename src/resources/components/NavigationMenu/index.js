@@ -2,7 +2,7 @@ import React from "react";
 
 import MenuOutlinedIcon from "@material-ui/icons/MenuOutlined";
 import Menu from "@material-ui/core/Menu";
-import { BaseButton } from "../../shared-components/Buttons";
+import { BaseButton } from "../../../shared-components/Buttons";
 
 /* 
     TODO: 
