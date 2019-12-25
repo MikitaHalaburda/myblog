@@ -12,11 +12,14 @@ const hideEverythingAction = () => ({
   type: HIDE_EVERYTHING
 });
 
-const startAction = payload => async dispatch => {
+const startAction = payload => async (dispatch, getState) => {
   dispatch(showMessageAction(payload));
+  const { message } = getState();
   try {
-    await httpRequest();
-    dispatch(hideEverythingAction());
+    if (message) {
+      await httpRequest();
+      dispatch(hideEverythingAction());
+    }
   } catch (e) {
     console.log("err");
   }
