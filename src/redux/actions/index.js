@@ -1,34 +1,23 @@
-import { httpRequest } from "../../utils/httpRequest";
-
-const SET_MESSAGE = "SET_MESSAGE";
-const HIDE_EVERYTHING = "HIDE_EVERYTHING";
-
-const showMessageAction = payload => ({
-  type: SET_MESSAGE,
-  payload
-});
-
-const hideEverythingAction = () => ({
-  type: HIDE_EVERYTHING
-});
-
-const startAction = payload => async (dispatch, getState) => {
-  dispatch(showMessageAction(payload));
-  const { message } = getState();
-  try {
-    if (message) {
-      await httpRequest();
-      dispatch(hideEverythingAction());
-    }
-  } catch (e) {
-    console.log("err");
-  }
-};
+import {
+  SUCCESS_PERSON_REQUEST,
+  ERROR_PERSON_REQUEST,
+  SET_PERSON_LOADING,
+  getPerson
+} from "./peronActions";
+import {
+  sendRequestAction,
+  ERROR_REQUEST,
+  SUCCESS_REQUEST,
+  SET_LOADING
+} from "./peoplesActions";
 
 export {
-  SET_MESSAGE,
-  HIDE_EVERYTHING,
-  showMessageAction,
-  hideEverythingAction,
-  startAction
+  sendRequestAction,
+  getPerson,
+  ERROR_REQUEST,
+  SUCCESS_REQUEST,
+  SET_LOADING,
+  SUCCESS_PERSON_REQUEST,
+  ERROR_PERSON_REQUEST,
+  SET_PERSON_LOADING
 };
