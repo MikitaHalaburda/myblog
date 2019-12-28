@@ -7,10 +7,14 @@ const HomeComponent = ({
   handleClick,
   starWarsPeoples,
   singlePerson,
+  handleGetPerson,
+  handleGetPeoples,
   ...props
 }) => (
   <div>
-    <BaseButton onClick={handleClick} text="Click" />
+    <BaseButton onClick={handleClick} text="Get person and peoples" />
+    <BaseButton onClick={handleGetPeoples} text="Get peoples" />
+    <BaseButton onClick={handleGetPerson} text="Get person" />
     <HomeContentWrapper>
       <div>
         <h1>Single Person</h1>

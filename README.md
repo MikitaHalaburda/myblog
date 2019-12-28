@@ -1,4 +1,5 @@
 Mikita Halaburda.
 
 Stack:
-React, Material-ui, styled-components
+React, Material-ui, styled-components, axios
+redux, redux-thunk, reselect
