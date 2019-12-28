@@ -1,29 +1,18 @@
-import { SET_MESSAGE, HIDE_EVERYTHING } from "../actions";
+import {
+  singlePersonInitialState,
+  starWarsSinglePersonReducer
+} from "./personReducer";
+import { starWarsPeoplesReducer, peoplesInitialState } from "./peoplesReducer";
 
-const initialState = { message: "", hideEverything: false };
-
-const messageReducer = (state = "", action) => {
-  switch (action.type) {
-    case SET_MESSAGE:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-const hideMessageReducer = (state = false, action) => {
-  switch (action.type) {
-    case HIDE_EVERYTHING:
-      return true;
-    default:
-      return state;
-  }
+const initialState = {
+  starWarsPeoples: peoplesInitialState,
+  singlePerson: singlePersonInitialState
 };
 
 const rootReducer = (state = initialState, action) => {
   return {
-    message: messageReducer(state.message, action),
-    hideEverything: hideMessageReducer(state.hide, action)
+    starWarsPeoples: starWarsPeoplesReducer(state.starWarsPeoples, action),
+    singlePerson: starWarsSinglePersonReducer(state.singlePerson, action)
   };
 };
 
