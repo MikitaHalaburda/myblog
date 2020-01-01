@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import HomeComponent from "../../components/Home/index";
-import { sendRequestAction, getPerson } from "../../../redux/actions/index";
 import getPersonSelector from "../../../redux/selectors";
+import { fetchPerson } from "../../../redux/reducers/personReducer";
+import { fetchPeoples } from "../../../redux/reducers/peoplesReducer";
 
 const HomeContainer = ({
   handleClick,
@@ -33,13 +34,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handleClick: () => {
-      dispatch(sendRequestAction("https://swapi.co/api/people/?page=1"));
-      dispatch(getPerson("https://swapi.co/api/people/1/"));
+      dispatch(fetchPeoples("https://swapi.co/api/people/?page=1"));
+      dispatch(fetchPerson("https://swapi.co/api/people/1/"));
     },
     handleGetPerson: () =>
-      dispatch(getPerson("https://swapi.co/api/people/1/")),
+      dispatch(fetchPerson("https://swapi.co/api/people/1/")),
     handleGetPeoples: () =>
-      dispatch(sendRequestAction("https://swapi.co/api/people/?page=1"))
+      dispatch(fetchPeoples("https://swapi.co/api/people/?page=1"))
   };
 };
 

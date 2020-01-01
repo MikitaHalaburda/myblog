@@ -1,9 +1,5 @@
-import {
-  SUCCESS_PERSON_REQUEST,
-  SET_PERSON_LOADING,
-  ERROR_PERSON_REQUEST
-} from "../actions";
-import { updateState } from "./utils";
+import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const singlePersonInitialState = {
   person: {},
@@ -11,21 +7,40 @@ const singlePersonInitialState = {
   error: null
 };
 
-const starWarsSinglePersonReducer = (
-  state = singlePersonInitialState,
-  action
-) => {
-  switch (action.type) {
-    case SET_PERSON_LOADING:
-      return updateState(state, action.payload);
-    case SUCCESS_PERSON_REQUEST:
-      return updateState(state, action.payload);
-    case ERROR_PERSON_REQUEST:
-      return updateState(state, action.payload);
+const singlePersonSlice = createSlice({
+  name: "signlePersonSlice",
+  initialState: singlePersonInitialState,
+  reducers: {
+    setPersonLoading(state) {
+      state.loading = true;
+    },
+    setPersonSuccess(state, action) {
+      state.loading = false;
+      state.person = action.payload;
+    },
+    setPersonError(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+    }
+  }
+});
 
-    default:
-      return state;
+const fetchPerson = payload => async (dispatch, getState) => {
+  dispatch(setPersonLoading());
+  try {
+    const response = await axios(payload);
+    dispatch(setPersonSuccess(response.data));
+  } catch (e) {
+    setPersonError("Person request faild");
   }
 };
 
-export { singlePersonInitialState, starWarsSinglePersonReducer };
+const {
+  setPersonLoading,
+  setPersonSuccess,
+  setPersonError
+} = singlePersonSlice.actions;
+
+export default singlePersonSlice.reducer;
+
+export { fetchPerson };
