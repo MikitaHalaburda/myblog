@@ -4,7 +4,19 @@ import HomeComponent from "../../components/Home/index";
 import { sendRequestAction, getPerson } from "../../../redux/actions/index";
 import getPersonSelector from "../../../redux/selectors";
 
-const HomeContainer = props => <HomeComponent {...props} />;
+const HomeContainer = ({
+  handleClick,
+  handleGetPerson,
+  handleGetPeoples,
+  ...props
+}) => {
+  const buttonsAction = [
+    { text: "Get person and peoples", callback: handleClick },
+    { text: "Get person", callback: handleGetPerson },
+    { text: "Get peoples", callback: handleGetPeoples }
+  ];
+  return <HomeComponent {...props} buttonsAction={buttonsAction} />;
+};
 
 const getStarWars = state => {
   console.log("Computing star wars peoples");
