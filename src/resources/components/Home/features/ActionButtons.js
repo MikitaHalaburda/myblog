@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { BaseButton } from "../../../../shared-components/Buttons";
 
 const ActionButtons = ({ actionButtons }) => (
@@ -9,4 +9,7 @@ const ActionButtons = ({ actionButtons }) => (
   </div>
 );
 
-export default ActionButtons;
+/* 
+I know that that components never updates, 
+why i cant return true in compare function to never call them? */
+export default memo(ActionButtons, () => true);

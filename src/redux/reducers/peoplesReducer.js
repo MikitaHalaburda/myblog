@@ -21,6 +21,9 @@ const peoplesSlice = createSlice({
     setPeoplesError(state, action) {
       state.loading = false;
       state.error = action.payload;
+    },
+    resetPeoples(state) {
+      state.peoples = [];
     }
   }
 });
@@ -28,7 +31,8 @@ const peoplesSlice = createSlice({
 const {
   setPeoplesLoading,
   setPeoplesSuccess,
-  setPeoplesError
+  setPeoplesError,
+  resetPeoples
 } = peoplesSlice.actions;
 
 const fetchPeoples = payload => async (dispatch, getState) => {
@@ -42,4 +46,4 @@ const fetchPeoples = payload => async (dispatch, getState) => {
 };
 
 export default peoplesSlice.reducer;
-export { fetchPeoples };
+export { fetchPeoples, resetPeoples };
