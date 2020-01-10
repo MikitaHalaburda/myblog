@@ -7,7 +7,7 @@ import {
   fetchPeoples,
   resetPeoples
 } from "../../../redux/reducers/peoplesReducer";
-import HomeWrapper from "./HomeWrapper";
+import UnmountWrapper from "../../../shared-components/UnmountWrapper/UnmountWrapper";
 
 const HomeContainer = ({
   handleClick,
@@ -46,11 +46,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchPerson("https://swapi.co/api/people/1/")),
     handleGetPeoples: () =>
       dispatch(fetchPeoples("https://swapi.co/api/people/?page=1")),
-    handleResetPeoples: () => dispatch(resetPeoples())
+    unmountCallback: () => dispatch(resetPeoples())
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomeWrapper(HomeContainer));
+)(UnmountWrapper(HomeContainer));
