@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import HomeComponent from "../../components/Home/index";
 import { sendRequestAction, getPerson } from "../../../redux/actions/index";
 import getPersonSelector from "../../../redux/selectors";
+import HomeWrapper from "./HomeWrapper";
 
 const HomeContainer = ({
   handleClick,
@@ -15,6 +16,7 @@ const HomeContainer = ({
     { text: "Get person", callback: handleGetPerson },
     { text: "Get peoples", callback: handleGetPeoples }
   ];
+
   return <HomeComponent {...props} buttonsAction={buttonsAction} />;
 };
 
@@ -43,4 +45,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeWrapper(HomeContainer));
