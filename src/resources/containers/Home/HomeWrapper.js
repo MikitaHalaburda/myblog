@@ -3,7 +3,7 @@ import React, { Component } from "react";
 function HomeWrapper(WrappedComponent) {
   return class extends Component {
     componentWillUnmount() {
-      console.log("unmobunt", this.props);
+      this.props.handleResetPeoples();
     }
     render() {
       return <WrappedComponent {...this.props} />;
