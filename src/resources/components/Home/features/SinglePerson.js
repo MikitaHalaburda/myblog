@@ -10,7 +10,7 @@ const SinglePerson = ({
   return (
     <div>
       <SubmitInput
-        value={inputValue}
+        inputValue={inputValue}
         handleClick={handleClick}
         onChange={onChangePersonInput}
       />

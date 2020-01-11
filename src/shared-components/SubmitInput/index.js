@@ -5,7 +5,7 @@ import { FaCheck } from "react-icons/fa";
 const SubmitInput = ({ handleClick, inputValue, onChange }) => (
   <div>
     <TextField
-      value={inputValue}
+      value={inputValue || ""}
       onChange={onChange}
       label="Person ID"
       size="small"
