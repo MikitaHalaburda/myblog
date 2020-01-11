@@ -4,7 +4,8 @@ import axios from "axios";
 const singlePersonInitialState = {
   person: {},
   loading: false,
-  error: null
+  error: null,
+  personId: null
 };
 
 const singlePersonSlice = createSlice({
@@ -16,7 +17,8 @@ const singlePersonSlice = createSlice({
     },
     setPersonSuccess(state, action) {
       state.loading = false;
-      state.person = action.payload;
+      state.person = action.payload.data;
+      state.personId = action.payload.personId;
     },
     setPersonError(state, action) {
       state.loading = false;
@@ -25,11 +27,12 @@ const singlePersonSlice = createSlice({
   }
 });
 
-const fetchPerson = payload => async (dispatch, getState) => {
+const fetchPerson = ({ url, personId }) => async (dispatch, getState) => {
+  console.log(personId);
   dispatch(setPersonLoading());
   try {
-    const response = await axios(payload);
-    dispatch(setPersonSuccess(response.data));
+    const response = await axios(url);
+    dispatch(setPersonSuccess({ data: response.data, personId }));
   } catch (e) {
     setPersonError("Person request faild");
   }

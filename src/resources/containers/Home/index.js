@@ -62,7 +62,7 @@ const mapDispatchToProps = dispatch => {
     handleGetPerson: payload => {
       const personId = typeof payload === "string" ? payload : "1";
       const url = `https://swapi.co/api/people/${personId}/`;
-      dispatch(fetchPerson(url));
+      dispatch(fetchPerson({ url, personId }));
     },
     handleGetPeoples: () =>
       dispatch(fetchPeoples("https://swapi.co/api/people/?page=1")),
