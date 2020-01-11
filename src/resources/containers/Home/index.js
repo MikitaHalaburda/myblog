@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import HomeComponent from "../../components/Home/index";
 import getPersonSelector from "../../../redux/selectors";
@@ -15,13 +15,30 @@ const HomeContainer = ({
   handleGetPeoples,
   ...props
 }) => {
+  const [inputPersonValue, setInputPersonValue] = useState(null);
   const buttonsAction = [
     { text: "Get person and peoples", callback: handleClick },
     { text: "Get person", callback: handleGetPerson },
     { text: "Get peoples", callback: handleGetPeoples }
   ];
 
-  return <HomeComponent {...props} buttonsAction={buttonsAction} />;
+  const handlePersonClick = () => {
+    handleGetPerson(inputPersonValue);
+  };
+
+  const onChangePersonInput = e => {
+    setInputPersonValue(e.target.value);
+  };
+
+  return (
+    <HomeComponent
+      {...props}
+      handlePersonClick={handlePersonClick}
+      inputPersonValue={inputPersonValue}
+      buttonsAction={buttonsAction}
+      onChangePersonInput={onChangePersonInput}
+    />
+  );
 };
 
 const getStarWars = state => {
@@ -42,8 +59,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchPeoples("https://swapi.co/api/people/?page=1"));
       dispatch(fetchPerson("https://swapi.co/api/people/1/"));
     },
-    handleGetPerson: () =>
-      dispatch(fetchPerson("https://swapi.co/api/people/1/")),
+    handleGetPerson: payload => {
+      const personId = typeof payload === "string" ? payload : "1";
+      const url = `https://swapi.co/api/people/${personId}/`;
+      dispatch(fetchPerson(url));
+    },
     handleGetPeoples: () =>
       dispatch(fetchPeoples("https://swapi.co/api/people/?page=1")),
     unmountCallback: () => dispatch(resetPeoples())
