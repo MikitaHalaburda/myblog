@@ -12,4 +12,6 @@ const ActionButtons = ({ actionButtons }) => (
 /* 
 I know that that components never updates, 
 why i cant return true in compare function to never call them? */
-export default memo(ActionButtons, () => true);
+export default memo(ActionButtons, (prev, next) => {
+  return false;
+});

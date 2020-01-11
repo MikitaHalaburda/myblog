@@ -28,7 +28,6 @@ const singlePersonSlice = createSlice({
 });
 
 const fetchPerson = ({ url, personId }) => async (dispatch, getState) => {
-  console.log(personId);
   dispatch(setPersonLoading());
   try {
     const response = await axios(url);

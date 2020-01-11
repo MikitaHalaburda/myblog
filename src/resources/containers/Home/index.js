@@ -18,7 +18,12 @@ const HomeContainer = ({
   const [inputPersonValue, setInputPersonValue] = useState(null);
   const buttonsAction = [
     { text: "Get person and peoples", callback: handleClick },
-    { text: "Get person", callback: handleGetPerson },
+    {
+      text: props.singlePerson.personId
+        ? `Get person ${props.singlePerson.personId}`
+        : "Get person",
+      callback: handleGetPerson
+    },
     { text: "Get peoples", callback: handleGetPeoples }
   ];
 
