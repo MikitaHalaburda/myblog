@@ -16,7 +16,7 @@ const peoplesSlice = createSlice({
     },
     setPeoplesSuccess(state, action) {
       state.loading = false;
-      state.peoples = action.payload;
+      state.peoples = state.peoples.concat(action.payload);
     },
     setPeoplesError(state, action) {
       state.loading = false;
@@ -40,6 +40,9 @@ const fetchPeoples = payload => async (dispatch, getState) => {
   try {
     const response = await axios(payload);
     dispatch(setPeoplesSuccess(response.data.results));
+    if (response.data.next) {
+      fetchPeoples(response.data.next)(dispatch, getState);
+    }
   } catch (e) {
     setPeoplesError("Person request faild");
   }
